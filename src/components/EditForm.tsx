@@ -39,7 +39,7 @@ interface EditFormProps {
 
 const Field = ({ label, children, hint }: { label: string; children: React.ReactNode; hint?: string }) => (
   <div className="space-y-2 animate-fade-in">
-    <Label className="text-sm font-medium text-foreground">{label}</Label>
+    <Label className="text-sm font-semibold text-foreground">{label}</Label>
     {hint && <p className="text-[11px] text-muted-foreground -mt-1">{hint}</p>}
     {children}
   </div>
@@ -47,9 +47,13 @@ const Field = ({ label, children, hint }: { label: string; children: React.React
 
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <div className="space-y-4">
-    <h3 className="text-xs font-bold uppercase tracking-wider text-primary border-b border-border/50 pb-2">
-      {title}
-    </h3>
+    <div className="flex items-center gap-3">
+      <div className="w-2 h-2 rounded-full bg-primary" />
+      <h3 className="text-xs font-extrabold uppercase tracking-wider text-primary">
+        {title}
+      </h3>
+      <div className="flex-1 h-px bg-secondary" />
+    </div>
     {children}
   </div>
 );
@@ -86,17 +90,17 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
             placeholder="Ex: mulher jovem, cabelos castanhos longos, olhos verdes, pele clara..."
             value={data.subject}
             onChange={(e) => set("subject", e.target.value)}
-            className="bg-secondary/50 border-border resize-none min-h-[70px]"
+            className="neo-inset rounded-xl border-none bg-background resize-none min-h-[70px] focus:ring-2 focus:ring-primary/30"
           />
         </Field>
 
         <div className="grid grid-cols-2 gap-4">
           <Field label="Expressão facial">
             <Select value={data.expression} onValueChange={(v) => set("expression", v)}>
-              <SelectTrigger className="bg-secondary/50 border-border">
+              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="neo-raised rounded-xl border-none">
                 <SelectItem value="keep">Manter original</SelectItem>
                 <SelectItem value="smile">Sorriso natural</SelectItem>
                 <SelectItem value="serious">Sério / Neutro</SelectItem>
@@ -112,10 +116,10 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
 
           <Field label="Pose / Posição">
             <Select value={data.pose} onValueChange={(v) => set("pose", v)}>
-              <SelectTrigger className="bg-secondary/50 border-border">
+              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="neo-raised rounded-xl border-none">
                 <SelectItem value="keep">Manter original</SelectItem>
                 <SelectItem value="portrait">Retrato frontal</SelectItem>
                 <SelectItem value="three_quarter">Três quartos</SelectItem>
@@ -131,10 +135,10 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
 
         <Field label="Textura da pele">
           <Select value={data.skinTexture} onValueChange={(v) => set("skinTexture", v)}>
-            <SelectTrigger className="bg-secondary/50 border-border">
+            <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
               <SelectValue placeholder="Selecione" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="neo-raised rounded-xl border-none">
               <SelectItem value="natural">Natural com textura real</SelectItem>
               <SelectItem value="smooth">Levemente suavizada</SelectItem>
               <SelectItem value="porcelain">Porcelana / Muito suave</SelectItem>
@@ -150,7 +154,7 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
             placeholder="Ex: manter original, ou: loiro platinado, cacheado, preso em coque..."
             value={data.hairStyle}
             onChange={(e) => set("hairStyle", e.target.value)}
-            className="bg-secondary/50 border-border"
+            className="neo-inset rounded-xl border-none bg-background focus:ring-2 focus:ring-primary/30"
           />
         </Field>
       </Section>
@@ -162,7 +166,7 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
             placeholder="Ex: trocar o fundo por uma floresta, mudar a roupa para vestido vermelho, adicionar iluminação dramática..."
             value={data.changes}
             onChange={(e) => set("changes", e.target.value)}
-            className="bg-secondary/50 border-border resize-none min-h-[90px]"
+            className="neo-inset rounded-xl border-none bg-background resize-none min-h-[90px] focus:ring-2 focus:ring-primary/30"
           />
         </Field>
 
@@ -171,7 +175,7 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
             placeholder="Ex: rosto, expressão, identidade, posição do corpo, mãos..."
             value={data.preserve}
             onChange={(e) => set("preserve", e.target.value)}
-            className="bg-secondary/50 border-border resize-none min-h-[70px]"
+            className="neo-inset rounded-xl border-none bg-background resize-none min-h-[70px] focus:ring-2 focus:ring-primary/30"
           />
         </Field>
 
@@ -180,7 +184,7 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
             placeholder="Ex: manter roupa atual, ou: vestido de gala preto, óculos aviador, colar de pérolas, relógio de luxo..."
             value={data.clothing}
             onChange={(e) => set("clothing", e.target.value)}
-            className="bg-secondary/50 border-border resize-none"
+            className="neo-inset rounded-xl border-none bg-background resize-none focus:ring-2 focus:ring-primary/30"
           />
         </Field>
       </Section>
@@ -190,10 +194,10 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
         <div className="grid grid-cols-2 gap-4">
           <Field label="Estilo / Atmosfera">
             <Select value={data.style} onValueChange={(v) => set("style", v)}>
-              <SelectTrigger className="bg-secondary/50 border-border">
+              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="neo-raised rounded-xl border-none">
                 <SelectItem value="realistic">Fotorrealista</SelectItem>
                 <SelectItem value="cinematic">Cinematográfico</SelectItem>
                 <SelectItem value="editorial">Editorial / Moda</SelectItem>
@@ -212,10 +216,10 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
 
           <Field label="Mood / Clima">
             <Select value={data.mood} onValueChange={(v) => set("mood", v)}>
-              <SelectTrigger className="bg-secondary/50 border-border">
+              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="neo-raised rounded-xl border-none">
                 <SelectItem value="warm">Quente / Acolhedor</SelectItem>
                 <SelectItem value="cold">Frio / Distante</SelectItem>
                 <SelectItem value="romantic">Romântico</SelectItem>
@@ -232,10 +236,10 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
 
           <Field label="Nível de Realismo">
             <Select value={data.realism} onValueChange={(v) => set("realism", v)}>
-              <SelectTrigger className="bg-secondary/50 border-border">
+              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="neo-raised rounded-xl border-none">
                 <SelectItem value="ultra">Ultra-realista (8K)</SelectItem>
                 <SelectItem value="high">Alto realismo</SelectItem>
                 <SelectItem value="medium">Médio</SelectItem>
@@ -247,10 +251,10 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
 
           <Field label="Tom de Cor Geral">
             <Select value={data.colorTone} onValueChange={(v) => set("colorTone", v)}>
-              <SelectTrigger className="bg-secondary/50 border-border">
+              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="neo-raised rounded-xl border-none">
                 <SelectItem value="natural">Natural / Neutro</SelectItem>
                 <SelectItem value="warm_orange">Quente / Laranja</SelectItem>
                 <SelectItem value="warm_gold">Dourado</SelectItem>
@@ -273,10 +277,10 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
         <div className="grid grid-cols-2 gap-4">
           <Field label="Tipo de Iluminação">
             <Select value={data.lighting} onValueChange={(v) => set("lighting", v)}>
-              <SelectTrigger className="bg-secondary/50 border-border">
+              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="neo-raised rounded-xl border-none">
                 <SelectItem value="natural">Natural</SelectItem>
                 <SelectItem value="golden_hour">Golden Hour</SelectItem>
                 <SelectItem value="blue_hour">Blue Hour</SelectItem>
@@ -295,10 +299,10 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
 
           <Field label="Direção da Luz">
             <Select value={data.lightingDirection} onValueChange={(v) => set("lightingDirection", v)}>
-              <SelectTrigger className="bg-secondary/50 border-border">
+              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="neo-raised rounded-xl border-none">
                 <SelectItem value="front">Frontal</SelectItem>
                 <SelectItem value="side">Lateral (45°)</SelectItem>
                 <SelectItem value="rembrandt">Rembrandt</SelectItem>
@@ -318,10 +322,10 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
         <div className="grid grid-cols-2 gap-4">
           <Field label="Ângulo de Câmera">
             <Select value={data.cameraAngle} onValueChange={(v) => set("cameraAngle", v)}>
-              <SelectTrigger className="bg-secondary/50 border-border">
+              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="neo-raised rounded-xl border-none">
                 <SelectItem value="eye_level">Nível dos olhos</SelectItem>
                 <SelectItem value="low">De baixo (low angle)</SelectItem>
                 <SelectItem value="high">De cima (high angle)</SelectItem>
@@ -334,10 +338,10 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
 
           <Field label="Tipo de Lente">
             <Select value={data.cameraLens} onValueChange={(v) => set("cameraLens", v)}>
-              <SelectTrigger className="bg-secondary/50 border-border">
+              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="neo-raised rounded-xl border-none">
                 <SelectItem value="35mm">35mm (versátil)</SelectItem>
                 <SelectItem value="50mm">50mm (natural)</SelectItem>
                 <SelectItem value="85mm">85mm (retrato)</SelectItem>
@@ -351,10 +355,10 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
 
           <Field label="Profundidade de Campo">
             <Select value={data.depth} onValueChange={(v) => set("depth", v)}>
-              <SelectTrigger className="bg-secondary/50 border-border">
+              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="neo-raised rounded-xl border-none">
                 <SelectItem value="shallow">Rasa (f/1.4 - bokeh intenso)</SelectItem>
                 <SelectItem value="moderate">Moderada (f/2.8)</SelectItem>
                 <SelectItem value="deep">Profunda (f/8 - tudo focado)</SelectItem>
@@ -370,10 +374,10 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
         <div className="grid grid-cols-2 gap-4">
           <Field label="Fundo">
             <Select value={data.background} onValueChange={(v) => set("background", v)}>
-              <SelectTrigger className="bg-secondary/50 border-border">
+              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="neo-raised rounded-xl border-none">
                 <SelectItem value="keep">Manter original</SelectItem>
                 <SelectItem value="studio_white">Estúdio branco</SelectItem>
                 <SelectItem value="studio_black">Estúdio preto</SelectItem>
@@ -390,10 +394,10 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
 
           <Field label="Hora do Dia">
             <Select value={data.timeOfDay} onValueChange={(v) => set("timeOfDay", v)}>
-              <SelectTrigger className="bg-secondary/50 border-border">
+              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="neo-raised rounded-xl border-none">
                 <SelectItem value="dawn">Amanhecer</SelectItem>
                 <SelectItem value="morning">Manhã</SelectItem>
                 <SelectItem value="noon">Meio-dia</SelectItem>
@@ -408,10 +412,10 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
 
           <Field label="Ambiente">
             <Select value={data.environment} onValueChange={(v) => set("environment", v)}>
-              <SelectTrigger className="bg-secondary/50 border-border">
+              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="neo-raised rounded-xl border-none">
                 <SelectItem value="indoor">Interior</SelectItem>
                 <SelectItem value="outdoor">Exterior</SelectItem>
                 <SelectItem value="studio">Estúdio</SelectItem>
@@ -428,10 +432,10 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
 
           <Field label="Clima">
             <Select value={data.weather} onValueChange={(v) => set("weather", v)}>
-              <SelectTrigger className="bg-secondary/50 border-border">
+              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="neo-raised rounded-xl border-none">
                 <SelectItem value="clear">Limpo / Ensolarado</SelectItem>
                 <SelectItem value="cloudy">Nublado</SelectItem>
                 <SelectItem value="overcast">Encoberto</SelectItem>
@@ -450,7 +454,7 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
             placeholder="Ex: café parisiense vintage com mesas de mármore e luz entrando pela janela, jardim japonês com cerejeiras em flor..."
             value={data.backgroundDescription}
             onChange={(e) => set("backgroundDescription", e.target.value)}
-            className="bg-secondary/50 border-border resize-none"
+            className="neo-inset rounded-xl border-none bg-background resize-none focus:ring-2 focus:ring-primary/30"
           />
         </Field>
       </Section>
@@ -461,7 +465,11 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
           {postProcessingOptions.map((option) => (
             <label
               key={option.id}
-              className="flex items-center gap-2 p-2 rounded-md hover:bg-secondary/30 cursor-pointer transition-colors"
+              className={`flex items-center gap-2.5 p-3 rounded-xl cursor-pointer transition-all duration-200 ${
+                (data.postProcessing || []).includes(option.id)
+                  ? "neo-inset"
+                  : "neo-flat hover:shadow-neo"
+              }`}
             >
               <Checkbox
                 checked={(data.postProcessing || []).includes(option.id)}
@@ -480,7 +488,7 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
             placeholder="Ex: catchlight nos olhos, reflexos suaves na pele, sombras definidas mas não duras..."
             value={data.extras}
             onChange={(e) => set("extras", e.target.value)}
-            className="bg-secondary/50 border-border resize-none"
+            className="neo-inset rounded-xl border-none bg-background resize-none focus:ring-2 focus:ring-primary/30"
           />
         </Field>
 
@@ -489,7 +497,7 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
             placeholder="Ex: filtros exagerados, pele artificial, saturação excessiva, fundo distrativo..."
             value={data.negativeExtras}
             onChange={(e) => set("negativeExtras", e.target.value)}
-            className="bg-secondary/50 border-border resize-none"
+            className="neo-inset rounded-xl border-none bg-background resize-none focus:ring-2 focus:ring-primary/30"
           />
         </Field>
       </Section>

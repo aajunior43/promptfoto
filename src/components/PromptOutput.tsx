@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Copy, Check, Sparkles, Ban, Lightbulb } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 interface PromptOutputProps {
@@ -32,25 +31,23 @@ const CopyBlock = ({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <h3 className={`text-sm font-semibold font-display flex items-center gap-2 ${accent ? "text-primary" : "text-foreground"}`}>
+        <h3 className={`text-sm font-bold font-display flex items-center gap-2 ${accent ? "text-primary" : "text-foreground"}`}>
           <Icon className="w-4 h-4" />
           {label}
         </h3>
-        <Button
-          variant="ghost"
-          size="sm"
+        <button
           onClick={copy}
-          className="h-7 px-2 text-xs text-muted-foreground hover:text-foreground"
+          className="neo-button rounded-lg px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground flex items-center gap-1"
         >
-          {copied ? <Check className="w-3.5 h-3.5 mr-1" /> : <Copy className="w-3.5 h-3.5 mr-1" />}
+          {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
           {copied ? "Copiado" : "Copiar"}
-        </Button>
+        </button>
       </div>
       <div
-        className={`p-4 rounded-lg text-sm leading-relaxed whitespace-pre-wrap ${
+        className={`p-4 rounded-xl text-sm leading-relaxed whitespace-pre-wrap ${
           accent
-            ? "bg-primary/5 border border-primary/20 text-foreground"
-            : "bg-secondary/50 border border-border text-secondary-foreground"
+            ? "neo-concave text-foreground"
+            : "neo-inset text-secondary-foreground"
         }`}
       >
         {content}
@@ -70,18 +67,20 @@ const PromptOutput = ({ prompt, negativePrompt, tips }: PromptOutputProps) => {
 
       {tips.length > 0 && (
         <div className="space-y-2">
-          <h3 className="text-sm font-semibold font-display flex items-center gap-2 text-accent">
+          <h3 className="text-sm font-bold font-display flex items-center gap-2 text-primary">
             <Lightbulb className="w-4 h-4" />
             Dicas para melhores resultados
           </h3>
-          <ul className="space-y-1.5">
-            {tips.map((tip, i) => (
-              <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
-                <span className="text-primary mt-0.5">•</span>
-                {tip}
-              </li>
-            ))}
-          </ul>
+          <div className="neo-inset rounded-xl p-4">
+            <ul className="space-y-2">
+              {tips.map((tip, i) => (
+                <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
+                  <span className="text-primary mt-0.5 font-bold">•</span>
+                  {tip}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
     </div>

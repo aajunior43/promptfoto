@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Space Grotesk", "sans-serif"],
-        body: ["Inter", "sans-serif"],
+        display: ["Nunito", "sans-serif"],
+        body: ["DM Sans", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -67,6 +67,12 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        neo: "6px 6px 12px hsl(220 14% 75%), -6px -6px 12px hsl(0 0% 100%)",
+        "neo-sm": "3px 3px 6px hsl(220 14% 75%), -3px -3px 6px hsl(0 0% 100%)",
+        "neo-inset": "inset 6px 6px 12px hsl(220 14% 75%), inset -6px -6px 12px hsl(0 0% 100%)",
+        "neo-inset-sm": "inset 3px 3px 6px hsl(220 14% 75%), inset -3px -3px 6px hsl(0 0% 100%)",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -81,8 +87,8 @@ export default {
           to: { opacity: "1", transform: "translateY(0)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(38 90% 55% / 0.1)" },
-          "50%": { boxShadow: "0 0 40px hsl(38 90% 55% / 0.3)" },
+          "0%, 100%": { boxShadow: "6px 6px 12px hsl(220 14% 75%), -6px -6px 12px hsl(0 0% 100%)" },
+          "50%": { boxShadow: "8px 8px 16px hsl(220 14% 72%), -8px -8px 16px hsl(0 0% 100%)" },
         },
       },
       animation: {

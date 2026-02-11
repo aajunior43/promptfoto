@@ -56,30 +56,30 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border/50 backdrop-blur-sm sticky top-0 z-10 bg-background/80">
-        <div className="container max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center animate-pulse-glow">
-              <Wand2 className="w-5 h-5 text-primary" />
+      <header className="sticky top-0 z-10 bg-background">
+        <div className="container max-w-6xl mx-auto px-4 py-4">
+          <div className="neo-raised rounded-2xl px-6 py-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl neo-convex flex items-center justify-center animate-pulse-glow">
+                <Wand2 className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <h1 className="text-xl font-extrabold font-display text-foreground tracking-tight">
+                  PromptForge
+                </h1>
+                <p className="text-xs text-muted-foreground">
+                  Super Criador de Prompts para Edição de Fotos com IA
+                </p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-xl font-bold font-display text-foreground tracking-tight">
-                PromptForge
-              </h1>
-              <p className="text-xs text-muted-foreground">
-                Super Criador de Prompts para Edição de Fotos com IA
-              </p>
-            </div>
+            <button
+              onClick={handleReset}
+              className="neo-button rounded-xl px-4 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground flex items-center gap-1.5"
+            >
+              <RotateCcw className="w-4 h-4" />
+              Recomeçar
+            </button>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleReset}
-            className="text-muted-foreground hover:text-foreground"
-          >
-            <RotateCcw className="w-4 h-4 mr-1.5" />
-            Recomeçar
-          </Button>
         </div>
       </header>
 
@@ -88,36 +88,39 @@ const Index = () => {
         <div className="grid lg:grid-cols-5 gap-8">
           {/* Left Column - Form */}
           <div className="lg:col-span-3 space-y-6">
-            <section className="glass-card rounded-xl p-6">
+            <section className="neo-raised-lg rounded-2xl p-8">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-semibold font-display text-foreground">
+                <h2 className="text-lg font-bold font-display text-foreground">
                   Configure sua Edição
                 </h2>
-                <span className="text-xs text-muted-foreground">
-                  Quanto mais detalhes, melhor o resultado
+                <span className="text-xs text-muted-foreground neo-flat rounded-full px-3 py-1.5">
+                  Quanto mais detalhes, melhor
                 </span>
               </div>
               
               <EditForm data={formData} onChange={setFormData} />
 
-              <div className="mt-8 pt-6 border-t border-border/50">
-                <Button
+              <div className="mt-8 pt-6">
+                <button
                   onClick={handleGenerate}
                   disabled={!canGenerate}
-                  size="lg"
-                  className="w-full h-12 font-display font-semibold tracking-wide text-base"
+                  className={`w-full h-14 rounded-2xl font-display font-bold tracking-wide text-base flex items-center justify-center gap-2 transition-all duration-300 ${
+                    canGenerate
+                      ? "bg-primary text-primary-foreground shadow-neo hover:shadow-[8px_8px_16px_hsl(220_14%_72%),-8px_-8px_16px_hsl(0_0%_100%)] hover:-translate-y-0.5 active:shadow-neo-inset active:translate-y-0"
+                      : "neo-inset text-muted-foreground cursor-not-allowed opacity-60"
+                  }`}
                 >
-                  <Wand2 className="w-5 h-5 mr-2" />
+                  <Wand2 className="w-5 h-5" />
                   Gerar Prompt Completo
-                </Button>
+                </button>
               </div>
             </section>
           </div>
 
           {/* Right Column - Output */}
-          <div className="lg:col-span-2 lg:sticky lg:top-24 lg:self-start">
-            <section className="glass-card rounded-xl p-6 min-h-[400px]">
-              <h2 className="text-lg font-semibold font-display text-foreground mb-6">
+          <div className="lg:col-span-2 lg:sticky lg:top-28 lg:self-start">
+            <section className="neo-raised-lg rounded-2xl p-8 min-h-[400px]">
+              <h2 className="text-lg font-bold font-display text-foreground mb-6">
                 Prompt Gerado
               </h2>
 
@@ -129,7 +132,7 @@ const Index = () => {
                 />
               ) : (
                 <div className="flex flex-col items-center justify-center h-80 text-center">
-                  <div className="w-20 h-20 rounded-full bg-secondary/50 flex items-center justify-center mb-5">
+                  <div className="w-20 h-20 rounded-full neo-concave flex items-center justify-center mb-5">
                     <Wand2 className="w-9 h-9 text-muted-foreground" />
                   </div>
                   <p className="text-sm text-muted-foreground max-w-[260px] leading-relaxed">

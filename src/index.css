@@ -2,54 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 @layer base {
   :root {
-    --background: 220 15% 8%;
-    --foreground: 40 10% 92%;
+    --bg-base: 220 14% 88%;
+    --background: 220 14% 88%;
+    --foreground: 220 20% 20%;
 
-    --card: 220 14% 11%;
-    --card-foreground: 40 10% 92%;
+    --card: 220 14% 88%;
+    --card-foreground: 220 20% 20%;
 
-    --popover: 220 14% 11%;
-    --popover-foreground: 40 10% 92%;
+    --popover: 220 14% 90%;
+    --popover-foreground: 220 20% 20%;
 
-    --primary: 38 90% 55%;
-    --primary-foreground: 220 15% 8%;
+    --primary: 250 60% 58%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 12% 16%;
-    --secondary-foreground: 40 10% 85%;
+    --secondary: 220 14% 82%;
+    --secondary-foreground: 220 20% 30%;
 
-    --muted: 220 12% 14%;
-    --muted-foreground: 220 10% 55%;
+    --muted: 220 12% 84%;
+    --muted-foreground: 220 12% 45%;
 
-    --accent: 38 70% 45%;
-    --accent-foreground: 40 10% 92%;
+    --accent: 250 55% 52%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 40 10% 92%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 12% 18%;
-    --input: 220 12% 18%;
-    --ring: 38 90% 55%;
+    --border: 220 14% 82%;
+    --input: 220 14% 85%;
+    --ring: 250 60% 58%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    --sidebar-background: 220 14% 11%;
-    --sidebar-foreground: 40 10% 92%;
-    --sidebar-primary: 38 90% 55%;
-    --sidebar-primary-foreground: 220 15% 8%;
-    --sidebar-accent: 220 12% 16%;
-    --sidebar-accent-foreground: 40 10% 92%;
-    --sidebar-border: 220 12% 18%;
-    --sidebar-ring: 38 90% 55%;
+    --sidebar-background: 220 14% 88%;
+    --sidebar-foreground: 220 20% 20%;
+    --sidebar-primary: 250 60% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 82%;
+    --sidebar-accent-foreground: 220 20% 20%;
+    --sidebar-border: 220 14% 82%;
+    --sidebar-ring: 250 60% 58%;
 
-    --font-display: 'Space Grotesk', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-display: 'Nunito', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
 
-    --glow-primary: 0 0 30px hsl(38 90% 55% / 0.15);
-    --glow-strong: 0 0 60px hsl(38 90% 55% / 0.25);
+    /* Neomorphism shadows */
+    --neo-shadow-light: 0 0% 100%;
+    --neo-shadow-dark: 220 14% 75%;
+    --neo-distance: 6px;
+    --neo-blur: 12px;
+    --neo-distance-lg: 10px;
+    --neo-blur-lg: 20px;
   }
 }
 
@@ -69,15 +75,84 @@
 }
 
 @layer utilities {
-  .glow-border {
-    box-shadow: var(--glow-primary);
+  /* Neomorphism raised effect */
+  .neo-raised {
+    background: hsl(var(--background));
+    box-shadow:
+      var(--neo-distance) var(--neo-distance) var(--neo-blur) hsl(var(--neo-shadow-dark)),
+      calc(-1 * var(--neo-distance)) calc(-1 * var(--neo-distance)) var(--neo-blur) hsl(var(--neo-shadow-light));
+    border: none;
   }
 
-  .glow-strong {
-    box-shadow: var(--glow-strong);
+  .neo-raised-lg {
+    background: hsl(var(--background));
+    box-shadow:
+      var(--neo-distance-lg) var(--neo-distance-lg) var(--neo-blur-lg) hsl(var(--neo-shadow-dark)),
+      calc(-1 * var(--neo-distance-lg)) calc(-1 * var(--neo-distance-lg)) var(--neo-blur-lg) hsl(var(--neo-shadow-light));
+    border: none;
   }
 
+  /* Neomorphism inset/pressed effect */
+  .neo-inset {
+    background: hsl(var(--background));
+    box-shadow:
+      inset var(--neo-distance) var(--neo-distance) var(--neo-blur) hsl(var(--neo-shadow-dark)),
+      inset calc(-1 * var(--neo-distance)) calc(-1 * var(--neo-distance)) var(--neo-blur) hsl(var(--neo-shadow-light));
+    border: none;
+  }
+
+  /* Neomorphism flat (subtle) */
+  .neo-flat {
+    background: hsl(var(--background));
+    box-shadow:
+      3px 3px 6px hsl(var(--neo-shadow-dark)),
+      -3px -3px 6px hsl(var(--neo-shadow-light));
+    border: none;
+  }
+
+  /* Interactive neomorphism */
+  .neo-button {
+    background: hsl(var(--background));
+    box-shadow:
+      var(--neo-distance) var(--neo-distance) var(--neo-blur) hsl(var(--neo-shadow-dark)),
+      calc(-1 * var(--neo-distance)) calc(-1 * var(--neo-distance)) var(--neo-blur) hsl(var(--neo-shadow-light));
+    border: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .neo-button:hover {
+    box-shadow:
+      calc(var(--neo-distance) + 2px) calc(var(--neo-distance) + 2px) calc(var(--neo-blur) + 4px) hsl(var(--neo-shadow-dark)),
+      calc(-1 * (var(--neo-distance) + 2px)) calc(-1 * (var(--neo-distance) + 2px)) calc(var(--neo-blur) + 4px) hsl(var(--neo-shadow-light));
+    transform: translateY(-1px);
+  }
+
+  .neo-button:active {
+    box-shadow:
+      inset var(--neo-distance) var(--neo-distance) var(--neo-blur) hsl(var(--neo-shadow-dark)),
+      inset calc(-1 * var(--neo-distance)) calc(-1 * var(--neo-distance)) var(--neo-blur) hsl(var(--neo-shadow-light));
+    transform: translateY(0);
+  }
+
+  /* Glass card legacy alias */
   .glass-card {
-    @apply bg-card/80 backdrop-blur-xl border border-border/50;
+    @apply neo-raised-lg;
+    border-radius: var(--radius);
+  }
+
+  /* Neomorphism concave (inner glow) */
+  .neo-concave {
+    background: linear-gradient(145deg, hsl(var(--neo-shadow-dark) / 0.15), hsl(var(--neo-shadow-light) / 0.7));
+    box-shadow:
+      var(--neo-distance) var(--neo-distance) var(--neo-blur) hsl(var(--neo-shadow-dark)),
+      calc(-1 * var(--neo-distance)) calc(-1 * var(--neo-distance)) var(--neo-blur) hsl(var(--neo-shadow-light));
+  }
+
+  /* Neomorphism convex (outer glow) */
+  .neo-convex {
+    background: linear-gradient(145deg, hsl(var(--neo-shadow-light) / 0.7), hsl(var(--neo-shadow-dark) / 0.15));
+    box-shadow:
+      var(--neo-distance) var(--neo-distance) var(--neo-blur) hsl(var(--neo-shadow-dark)),
+      calc(-1 * var(--neo-distance)) calc(-1 * var(--neo-distance)) var(--neo-blur) hsl(var(--neo-shadow-light));
   }
 }
