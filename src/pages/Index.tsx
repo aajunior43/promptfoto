@@ -3,6 +3,7 @@ import { Wand2, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import EditForm, { type EditFormData } from "@/components/EditForm";
 import PromptOutput from "@/components/PromptOutput";
+import TemplatePresets from "@/components/TemplatePresets";
 import { generatePrompt } from "@/lib/generatePrompt";
 
 const emptyForm: EditFormData = {
@@ -52,6 +53,11 @@ const Index = () => {
     setResult(null);
   };
 
+  const handleApplyTemplate = (templateData: Partial<EditFormData>) => {
+    setFormData({ ...emptyForm, ...templateData });
+    setResult(null);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -87,6 +93,10 @@ const Index = () => {
         <div className="grid lg:grid-cols-5 gap-8">
           {/* Left Column - Form */}
           <div className="lg:col-span-3 space-y-6">
+            <section className="neo-raised-lg rounded-2xl p-8">
+              <TemplatePresets onApply={handleApplyTemplate} />
+            </section>
+
             <section className="neo-raised-lg rounded-2xl p-8">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-bold font-display text-foreground">
