@@ -6,7 +6,6 @@ import PromptOutput from "@/components/PromptOutput";
 import { generatePrompt } from "@/lib/generatePrompt";
 
 const emptyForm: EditFormData = {
-  subject: "",
   changes: "",
   preserve: "",
   style: "",
@@ -41,7 +40,7 @@ const Index = () => {
     tips: string[];
   } | null>(null);
 
-  const canGenerate = formData.changes.trim().length > 0 || formData.subject.trim().length > 0;
+  const canGenerate = formData.changes.trim().length > 0;
 
   const handleGenerate = () => {
     if (!canGenerate) return;

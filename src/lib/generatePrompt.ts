@@ -205,11 +205,6 @@ export function generatePrompt(data: EditFormData): {
     "Edit the uploaded reference image with the following precise modifications while preserving identity and key features:\n"
   );
 
-  // Subject description
-  if (data.subject) {
-    parts.push(`SUBJECT: ${data.subject}`);
-  }
-
   // Modifications
   if (data.changes) {
     parts.push(`\nMODIFICATIONS REQUIRED:\n${data.changes}`);

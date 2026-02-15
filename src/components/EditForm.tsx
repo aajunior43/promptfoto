@@ -5,7 +5,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 
 export interface EditFormData {
-  subject: string;
   changes: string;
   preserve: string;
   style: string;
@@ -85,15 +84,6 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
     <div className="space-y-8">
       {/* SUJEITO */}
       <Section title="Sujeito / Pessoa">
-        <Field label="Descrição do sujeito" hint="Descreva a pessoa ou objeto principal da imagem original">
-          <Textarea
-            placeholder="Ex: mulher jovem, cabelos castanhos longos, olhos verdes, pele clara..."
-            value={data.subject}
-            onChange={(e) => set("subject", e.target.value)}
-            className="neo-inset rounded-xl border-none bg-background resize-none min-h-[70px] focus:ring-2 focus:ring-primary/30"
-          />
-        </Field>
-
         <div className="grid grid-cols-2 gap-4">
           <Field label="Expressão facial">
             <Select value={data.expression} onValueChange={(v) => set("expression", v)}>
