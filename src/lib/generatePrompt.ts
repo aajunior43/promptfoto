@@ -13,6 +13,13 @@ const styleMap: Record<string, string> = {
   glamour: "classic Hollywood glamour, golden age of cinema, timeless elegance",
   documentary: "documentary style, authentic and raw, candid moment captured",
   fashion: "high fashion photography, runway quality, avant-garde styling",
+  surreal: "surrealist art style, dreamlike impossible scenes, Salvador Dali inspired",
+  anime: "anime manga art style, cel shading, vibrant Japanese animation aesthetic",
+  watercolor: "digital watercolor painting, soft color bleeds, artistic brush strokes",
+  oil_painting: "oil painting style, thick brush strokes, classical fine art, museum quality",
+  pop_art: "pop art style, bold colors, comic book aesthetic, Andy Warhol inspired",
+  cyberpunk: "cyberpunk aesthetic, neon lights, futuristic tech, dystopian urban",
+  fantasy: "epic fantasy art, magical atmosphere, enchanted lighting, otherworldly",
 };
 
 const moodMap: Record<string, string> = {
@@ -158,6 +165,13 @@ const environmentMap: Record<string, string> = {
   desert: "desert landscape, sand dunes",
   garden: "garden setting, flowers and greenery",
   rooftop: "rooftop location, city skyline view",
+  underwater: "underwater scene, blue light, bubbles, aquatic atmosphere",
+  castle: "grand castle or palace interior, ornate architecture, regal atmosphere",
+  cafe: "cozy café or restaurant, warm ambient lighting, intimate setting",
+  library: "elegant library, bookshelves, warm reading light, intellectual atmosphere",
+  ruins: "abandoned ruins, decayed architecture, moody and atmospheric",
+  snow: "snowy winter landscape, white powder, frost-covered scenery",
+  neon_city: "neon-lit nighttime city, reflections on wet streets, cyberpunk vibe",
 };
 
 const weatherMap: Record<string, string> = {
@@ -191,6 +205,12 @@ const postProcessingMap: Record<string, string> = {
   color_grade: "professional cinematic color grading",
   lens_flare: "artistic lens flare elements",
   chromatic: "subtle chromatic aberration for realism",
+  glow: "soft dreamy glow effect, ethereal light bloom",
+  halation: "film halation effect, warm light bleed around highlights",
+  double_exposure: "double exposure blending effect, artistic overlay",
+  tilt_shift: "tilt-shift miniature effect, selective focus plane",
+  motion_blur: "artistic motion blur, sense of movement and dynamism",
+  light_leaks: "vintage light leaks, warm color bleeds from film edges",
 };
 
 export function generatePrompt(data: EditFormData): {

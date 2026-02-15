@@ -66,6 +66,12 @@ const postProcessingOptions = [
   { id: "color_grade", label: "Color grading cinematográfico" },
   { id: "lens_flare", label: "Lens flare" },
   { id: "chromatic", label: "Aberração cromática sutil" },
+  { id: "glow", label: "Glow / Brilho suave" },
+  { id: "halation", label: "Halation (brilho de filme)" },
+  { id: "double_exposure", label: "Dupla exposição" },
+  { id: "tilt_shift", label: "Tilt-shift / Miniatura" },
+  { id: "motion_blur", label: "Motion blur artístico" },
+  { id: "light_leaks", label: "Light leaks / Vazamento de luz" },
 ];
 
 const EditForm = ({ data, onChange }: EditFormProps) => {
@@ -200,6 +206,13 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
                 <SelectItem value="glamour">Glamour / Hollywood</SelectItem>
                 <SelectItem value="documentary">Documental</SelectItem>
                 <SelectItem value="fashion">High Fashion</SelectItem>
+                <SelectItem value="surreal">Surrealista</SelectItem>
+                <SelectItem value="anime">Anime / Manga</SelectItem>
+                <SelectItem value="watercolor">Aquarela digital</SelectItem>
+                <SelectItem value="oil_painting">Pintura a óleo</SelectItem>
+                <SelectItem value="pop_art">Pop Art</SelectItem>
+                <SelectItem value="cyberpunk">Cyberpunk</SelectItem>
+                <SelectItem value="fantasy">Fantasia épica</SelectItem>
               </SelectContent>
             </Select>
           </Field>
@@ -416,6 +429,13 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
                 <SelectItem value="desert">Deserto</SelectItem>
                 <SelectItem value="garden">Jardim</SelectItem>
                 <SelectItem value="rooftop">Rooftop</SelectItem>
+                <SelectItem value="underwater">Subaquático</SelectItem>
+                <SelectItem value="castle">Castelo / Palácio</SelectItem>
+                <SelectItem value="cafe">Café / Restaurante</SelectItem>
+                <SelectItem value="library">Biblioteca</SelectItem>
+                <SelectItem value="ruins">Ruínas / Abandonado</SelectItem>
+                <SelectItem value="snow">Cenário de neve</SelectItem>
+                <SelectItem value="neon_city">Cidade neon noturna</SelectItem>
               </SelectContent>
             </Select>
           </Field>
