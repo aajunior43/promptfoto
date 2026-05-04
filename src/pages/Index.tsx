@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Wand2, RotateCcw } from "lucide-react";
+ import { Wand2, RotateCcw, LayoutGrid, Settings2, Sparkle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import EditForm, { type EditFormData } from "@/components/EditForm";
 import PromptOutput from "@/components/PromptOutput";
-import TemplatePresets from "@/components/TemplatePresets";
+ import TemplatePresets from "@/components/TemplatePresets";
+ import { ThemeToggle } from "@/components/ThemeToggle";
 import { generatePrompt } from "@/lib/generatePrompt";
 
 const emptyForm: EditFormData = {
@@ -81,32 +82,36 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-10 bg-background">
-        <div className="container max-w-6xl mx-auto px-4 py-4">
-          <div className="neo-raised rounded-2xl px-6 py-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl neo-convex flex items-center justify-center animate-pulse-glow">
-                <Wand2 className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <h1 className="text-xl font-extrabold font-display text-foreground tracking-tight">
-                  PromptForge
-                </h1>
-                <p className="text-xs text-muted-foreground">
-                  Super Criador de Prompts para Edição de Fotos com IA
-                </p>
-              </div>
-            </div>
-            <button
-              onClick={handleReset}
-              className="neo-button rounded-xl px-4 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground flex items-center gap-1.5"
-            >
-              <RotateCcw className="w-4 h-4" />
-              Recomeçar
-            </button>
-          </div>
-        </div>
-      </header>
+       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md">
+         <div className="container max-w-6xl mx-auto px-4 py-3 sm:py-4">
+           <div className="neo-raised rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between">
+             <div className="flex items-center gap-3 sm:gap-4">
+               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl neo-convex flex items-center justify-center animate-pulse-glow">
+                 <Wand2 className="w-5 h-5 text-primary" />
+               </div>
+               <div className="hidden xs:block">
+                 <h1 className="text-lg sm:text-xl font-black font-display text-foreground tracking-tight leading-none">
+                   PromptForge
+                 </h1>
+                 <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-bold mt-1">
+                   AI Photo Editor
+                 </p>
+               </div>
+             </div>
+             
+             <div className="flex items-center gap-2 sm:gap-3">
+               <button
+                 onClick={handleReset}
+                 className="neo-button rounded-xl px-3 sm:px-4 h-9 sm:h-10 text-[10px] sm:text-xs font-bold text-muted-foreground hover:text-destructive flex items-center gap-1.5 transition-colors"
+               >
+                 <RotateCcw className="w-3.5 h-3.5" />
+                 <span className="hidden sm:inline">Recomeçar</span>
+               </button>
+               <ThemeToggle />
+             </div>
+           </div>
+         </div>
+       </header>
 
       {/* Main */}
       <main className="container max-w-6xl mx-auto px-4 py-8">
