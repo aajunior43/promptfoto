@@ -173,61 +173,43 @@ const EditForm = ({ data, onChange }: EditFormProps) => {
     set("negativePromptPreset", updated);
   };
 
-  return (
-    <div className="space-y-8">
-      {/* SUJEITO */}
-      <Section title="Sujeito / Pessoa">
-        <div className="grid grid-cols-2 gap-4">
-          <Field label="Expressão facial">
-            <Select value={data.expression} onValueChange={(v) => set("expression", v)}>
-              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
-                <SelectValue placeholder="Selecione" />
-              </SelectTrigger>
-              <SelectContent className="neo-raised rounded-xl border-none">
-                <SelectItem value="keep">Manter original</SelectItem>
-                <SelectItem value="smile">Sorriso natural</SelectItem>
-                <SelectItem value="serious">Sério / Neutro</SelectItem>
-                <SelectItem value="confident">Confiante</SelectItem>
-                <SelectItem value="mysterious">Misterioso</SelectItem>
-                <SelectItem value="joyful">Alegre / Radiante</SelectItem>
-                <SelectItem value="pensive">Pensativo</SelectItem>
-                <SelectItem value="seductive">Sedutor</SelectItem>
-                <SelectItem value="fierce">Intenso / Feroz</SelectItem>
-                <SelectItem value="surprised">Surpreso</SelectItem>
-                <SelectItem value="angry">Raivoso / Determinado</SelectItem>
-                <SelectItem value="sad">Triste / Melancólico</SelectItem>
-                <SelectItem value="laughing">Gargalhando</SelectItem>
-                <SelectItem value="stoic">Estoico / Impassível</SelectItem>
-                <SelectItem value="dreamy">Sonhador / Distraído</SelectItem>
-              </SelectContent>
-            </Select>
-          </Field>
-
-          <Field label="Pose / Posição">
-            <Select value={data.pose} onValueChange={(v) => set("pose", v)}>
-              <SelectTrigger className="neo-inset rounded-xl border-none bg-background">
-                <SelectValue placeholder="Selecione" />
-              </SelectTrigger>
-              <SelectContent className="neo-raised rounded-xl border-none">
-                <SelectItem value="keep">Manter original</SelectItem>
-                <SelectItem value="portrait">Retrato frontal</SelectItem>
-                <SelectItem value="three_quarter">Três quartos</SelectItem>
-                <SelectItem value="profile">Perfil</SelectItem>
-                <SelectItem value="over_shoulder">Olhando sobre o ombro</SelectItem>
-                <SelectItem value="dynamic">Pose dinâmica</SelectItem>
-                <SelectItem value="candid">Espontânea / Natural</SelectItem>
-                <SelectItem value="editorial">Editorial / Fashion</SelectItem>
-                <SelectItem value="sitting">Sentado</SelectItem>
-                <SelectItem value="leaning">Apoiado / Encostado</SelectItem>
-                <SelectItem value="walking">Caminhando</SelectItem>
-                <SelectItem value="dancing">Dançando</SelectItem>
-                <SelectItem value="lying">Deitado</SelectItem>
-                <SelectItem value="crossed_arms">Braços cruzados</SelectItem>
-                <SelectItem value="hands_in_pockets">Mãos nos bolsos</SelectItem>
-              </SelectContent>
-            </Select>
-          </Field>
-        </div>
+   return (
+     <Tabs defaultValue="essencial" className="w-full">
+       <TabsList className="grid w-full grid-cols-4 neo-inset p-1 rounded-2xl h-auto mb-8 bg-background">
+         <TabsTrigger value="essencial" className="rounded-xl data-[state=active]:bg-background data-[state=active]:neo-raised data-[state=active]:shadow-none py-2 text-xs font-black">
+           <Sparkles className="w-4 h-4 mr-2" /> Essencial
+         </TabsTrigger>
+         <TabsTrigger value="pessoa" className="rounded-xl data-[state=active]:bg-background data-[state=active]:neo-raised data-[state=active]:shadow-none py-2 text-xs font-black">
+           <User className="w-4 h-4 mr-2" /> Pessoa
+         </TabsTrigger>
+         <TabsTrigger value="ambiente" className="rounded-xl data-[state=active]:bg-background data-[state=active]:neo-raised data-[state=active]:shadow-none py-2 text-xs font-black">
+           <ImageIcon className="w-4 h-4 mr-2" /> Ambiente
+         </TabsTrigger>
+         <TabsTrigger value="tecnico" className="rounded-xl data-[state=active]:bg-background data-[state=active]:neo-raised data-[state=active]:shadow-none py-2 text-xs font-black">
+           <Settings className="w-4 h-4 mr-2" /> Técnico
+         </TabsTrigger>
+       </TabsList>
+ 
+       <TabsContent value="essencial" className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+         <Section title="Modificações Principais" icon={Sparkles}>
+           <Field label="O que deve ser alterado?" hint="Liste todas as mudanças que deseja aplicar">
+             <Textarea
+               placeholder="Ex: trocar o fundo por uma floresta, mudar a roupa para vestido vermelho, adicionar iluminação dramática..."
+               value={data.changes}
+               onChange={(e) => set("changes", e.target.value)}
+               className="neo-inset rounded-2xl border-none bg-background resize-none min-h-[120px] p-4 text-sm"
+             />
+           </Field>
+           <Field label="O que deve permanecer igual?" hint="Elementos que não podem ser alterados">
+             <Textarea
+               placeholder="Ex: rosto, expressão, identidade, posição do corpo, mãos..."
+               value={data.preserve}
+               onChange={(e) => set("preserve", e.target.value)}
+               className="neo-inset rounded-2xl border-none bg-background resize-none min-h-[80px] p-4 text-sm"
+             />
+           </Field>
+         </Section>
+       </TabsContent>
 
         <div className="grid grid-cols-2 gap-4">
           <Field label="Textura da pele">
