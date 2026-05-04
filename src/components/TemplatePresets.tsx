@@ -623,38 +623,33 @@ interface TemplatePresetsProps {
   onApply: (data: Partial<EditFormData>) => void;
 }
 
-const TemplatePresets = ({ onApply }: TemplatePresetsProps) => {
-  return (
-    <div className="space-y-4">
-      <div className="flex items-center gap-3 mb-2">
-        <div className="w-2 h-2 rounded-full bg-primary" />
-        <h3 className="text-xs font-extrabold uppercase tracking-wider text-primary">
-          Modelos Pré-Prontos ({templates.length})
-        </h3>
-        <div className="flex-1 h-px bg-secondary" />
-      </div>
-      <p className="text-[11px] text-muted-foreground">
-        Clique em um modelo para preencher automaticamente. Depois personalize como quiser.
-      </p>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        {templates.map((t) => (
-          <button
-            key={t.id}
-            onClick={() => onApply(t.data)}
-            className="neo-button rounded-xl p-3.5 text-left transition-all duration-200 hover:-translate-y-0.5 group"
-          >
-            <div className="flex items-center gap-2 mb-1.5">
-              <div className="w-7 h-7 rounded-lg neo-convex flex items-center justify-center group-hover:shadow-neo transition-all">
-                <t.icon className="w-3.5 h-3.5 text-primary" />
-              </div>
-              <span className="text-xs font-bold text-foreground leading-tight">{t.label}</span>
-            </div>
-            <p className="text-[10px] text-muted-foreground leading-snug">{t.description}</p>
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-};
+ const TemplatePresets = ({ onApply }: TemplatePresetsProps) => {
+   return (
+     <div className="relative">
+       <div className="flex overflow-x-auto gap-4 pb-4 px-2 no-scrollbar snap-x touch-pan-x">
+         {templates.map((t) => (
+           <button
+             key={t.id}
+             onClick={() => onApply(t.data)}
+             className="flex-shrink-0 w-36 sm:w-44 flex flex-col items-center gap-3 p-5 rounded-[2rem] neo-button text-center group snap-start transition-all duration-300 hover:scale-[1.02]"
+           >
+             <div className="w-12 h-12 rounded-2xl neo-concave flex items-center justify-center transition-all duration-500 group-hover:rotate-6 group-hover:shadow-neo group-hover:scale-110">
+               <t.icon className="w-6 h-6 text-primary" />
+             </div>
+             <div className="space-y-1">
+               <p className="text-[10px] sm:text-[11px] font-black text-foreground leading-none uppercase tracking-widest">
+                 {t.label}
+               </p>
+               <p className="text-[9px] text-muted-foreground leading-tight line-clamp-2 px-1">
+                 {t.description}
+               </p>
+             </div>
+           </button>
+         ))}
+       </div>
+       <div className="absolute top-0 right-0 h-full w-20 bg-gradient-to-l from-background to-transparent pointer-events-none rounded-[2.5rem]" />
+     </div>
+   );
+ };
 
 export default TemplatePresets;
