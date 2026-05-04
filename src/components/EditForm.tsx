@@ -1,9 +1,23 @@
-import { Textarea } from "@/components/ui/textarea";
+ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Slider } from "@/components/ui/slider";
+ import { Slider } from "@/components/ui/slider";
+ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+ import { 
+   User, 
+   Image as ImageIcon, 
+   Camera, 
+   Settings, 
+   Sparkles, 
+   Palette, 
+   Sun, 
+   Wind, 
+   Layers, 
+   Ban,
+   Maximize
+ } from "lucide-react";
 
 export interface EditFormData {
   changes: string;
@@ -58,26 +72,24 @@ interface EditFormProps {
   onChange: (data: EditFormData) => void;
 }
 
-const Field = ({ label, children, hint }: { label: string; children: React.ReactNode; hint?: string }) => (
-  <div className="space-y-2 animate-fade-in">
-    <Label className="text-sm font-semibold text-foreground">{label}</Label>
-    {hint && <p className="text-[11px] text-muted-foreground -mt-1">{hint}</p>}
-    {children}
-  </div>
-);
-
-const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <div className="space-y-4">
-    <div className="flex items-center gap-3">
-      <div className="w-2 h-2 rounded-full bg-primary" />
-      <h3 className="text-xs font-extrabold uppercase tracking-wider text-primary">
-        {title}
-      </h3>
-      <div className="flex-1 h-px bg-secondary" />
-    </div>
-    {children}
-  </div>
-);
+ const Field = ({ label, children, hint, icon: Icon }: { label: string; children: React.ReactNode; hint?: string; icon?: any }) => (
+   <div className="space-y-2.5 group animate-fade-in">
+     <div className="flex items-center gap-2">
+       {Icon && <Icon className="w-3.5 h-3.5 text-primary/70 group-hover:text-primary transition-colors" />}
+       <Label className="text-[13px] font-bold text-foreground/90 group-focus-within:text-primary transition-colors">{label}</Label>
+     </div>
+     {hint && <p className="text-[10px] leading-tight text-muted-foreground/80 -mt-1">{hint}</p>}
+     <div className="relative">
+       {children}
+     </div>
+   </div>
+ );
+ 
+ const SectionGrid = ({ children }: { children: React.ReactNode }) => (
+   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+     {children}
+   </div>
+ );
 
 const postProcessingOptions = [
   { id: "bokeh", label: "Bokeh / Desfoque de fundo" },
